@@ -14,7 +14,6 @@ document.getElementById("clearSearchButton").addEventListener("click", () => {
   clearSearch();
 });
 
-
 function fetchDogBreeds() {
   showLoadingIndicator();
   fetch('https://dog.ceo/api/breeds/list/all')
@@ -112,4 +111,3 @@ function hideLoadingIndicator() {
   const breedList = document.getElementById("breedList");
   breedList.innerHTML = '';
 }
-

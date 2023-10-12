@@ -23,6 +23,7 @@ main {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .button:hover {
@@ -55,6 +56,14 @@ footer {
     align-items: center;
     max-width: 200px; 
     max-height: 200px; 
+    border-radius: 50px;
 
 }
-
+.search-input {
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    font-size: 15px; 
+    width: 200px; 
+    
+}

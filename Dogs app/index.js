@@ -10,9 +10,7 @@ document.getElementById("backButton").addEventListener("click", () => {
   hideBreedList();
 });
 
-document.getElementById("clearSearchButton").addEventListener("click", () => {
-  clearSearch();
-});
+document.getElementById("clearSearchButton").addEventListener("click", clearSearch)
 
 function fetchDogBreeds() {
   showLoadingIndicator();
@@ -40,10 +38,7 @@ function searchDogBreed() {
           const filteredBreeds = filterBreeds(breeds, searchTerm);
           displayBreeds(filteredBreeds);
       })
-      .catch(error => {
-          hideLoadingIndicator();
-          console.error('Error fetching dog breeds:', error);
-      });
+
 }
 
 function filterBreeds(breeds, searchTerm) {
@@ -111,3 +106,22 @@ function hideLoadingIndicator() {
   const breedList = document.getElementById("breedList");
   breedList.innerHTML = '';
 }
+const commentButton = document.getElementById("submitcomment");
+const commentInput = document.getElementById("textinput");
+const commentList = document.getElementById("commentlist")
+
+commentButton.addEventListener("click", function() {
+    
+    console.log (commentButton)
+    const commentText =commentInput.value.trim();
+    if (commentText) {
+        
+        
+        const commentElement = document.createElement("div");
+        commentElement.textcontent = commentInput;
+        commentList.appendChild(commentElement);
+
+    
+        commentInput.value = "";
+    }
+});

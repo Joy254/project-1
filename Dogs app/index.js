@@ -5,14 +5,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
   let getBreedsBtn=document.getElementById("getBreedsButton")
   getBreedsBtn.addEventListener("click",fetchDogBreeds);
 
-let searchButton=document.getElementById("searchButton")
-searchButton.addEventListener("click",searchDogBreed);
+  let searchButton=document.getElementById("searchButton")
+  searchButton.addEventListener("click",searchDogBreed);
 
-let getBackButton=document.getElementById("backButton")
-getBackButton.addEventListener("click", hideBreedList)
-
-let getClearSearchButton=document.getElementById("clearSearchButton")
-getClearSearchButton.addEventListener("click", clearSearch)
+  let getBackButton=document.getElementById("backButton")
+  getBackButton.addEventListener("click", hideBreedList)
 
 function fetchDogBreeds() {
   showLoadingIndicator();

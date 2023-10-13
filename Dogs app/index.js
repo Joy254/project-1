@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
   let getBackButton=document.getElementById("backButton")
   getBackButton.addEventListener("click", hideBreedList)
-
+  
 function fetchDogBreeds() {
   showLoadingIndicator();
   fetch('https://dog.ceo/api/breeds/list/all')

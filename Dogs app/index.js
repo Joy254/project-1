@@ -1,16 +1,18 @@
-document.getElementById("getBreedsButton").addEventListener("click", () => {
-  fetchDogBreeds();
-});
+document.addEventListener('DOMContentLoaded', (e) => {
+  e.preventDefault()
 
-document.getElementById("searchButton").addEventListener("click", () => {
-  searchDogBreed();
-});
 
-document.getElementById("backButton").addEventListener("click", () => {
-  hideBreedList();
-});
+  let getBreedsBtn=document.getElementById("getBreedsButton")
+  getBreedsBtn.addEventListener("click",fetchDogBreeds);
 
-document.getElementById("clearSearchButton").addEventListener("click", clearSearch)
+let searchButton=document.getElementById("searchButton")
+searchButton.addEventListener("click",searchDogBreed);
+
+let getBackButton=document.getElementById("backButton")
+getBackButton.addEventListener("click", hideBreedList)
+
+let getClearSearchButton=document.getElementById("clearSearchButton")
+getClearSearchButton.addEventListener("click", clearSearch)
 
 function fetchDogBreeds() {
   showLoadingIndicator();
@@ -106,22 +108,91 @@ function hideLoadingIndicator() {
   const breedList = document.getElementById("breedList");
   breedList.innerHTML = '';
 }
-const commentButton = document.getElementById("submitcomment");
-const commentInput = document.getElementById("textinput");
-const commentList = document.getElementById("commentlist")
+function commentSection(commentData) {
+  //creating a div for the comment section 
+  let commentDiv = document.createElement('div');
+  //adding a bootstrap class
+  commentDiv.classList.add('comment');
+  //Adding the comment box
+  let commentArea = document.createElement('p');
+  commentArea.textContent = commentData.text;
+  //creating a div for the buttons and added comments
+  let actionsDiv = document.createElement('div');
+  actionsDiv.classList.add('actions');
+  //creating the edit button to edit comments
+  let editButton = document.createElement('button');
+  editButton.textContent = 'Edit';
+  editButton.classList.add('edit-button')};
+  //Edit comment actions
+  editButton.addEventListener('click', (e) => {
+      e.preventDefault()
+      editInput.classList.remove('hidden');
+      editInput.value = commentData.text;
+      editInput.addEventListener('keydown', (event) => {
+          event.preventDefault()
+          if (event.key === 'Enter') {
+              //updating text
+              let editedText = editInput.value;
+              let commentId = commentData.id;
+              //using PATCH to edit a comment from the server
+              fetch(`http://localhost:3000/comments/${commentId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: editedText }),
+            })
+            .then(response => response.json())
+            .then(data => {
+            })
+            //catching error from server
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            commentArea.textContent = editedText;
+            editInput.classList.add('hidden');
+                }
+            });
+        });
 
-commentButton.addEventListener("click", function() {
-    
-    console.log (commentButton)
-    const commentText =commentInput.value.trim();
-    if (commentText) {
-        
-        
-        const commentElement = document.createElement("div");
-        commentElement.textcontent = commentInput;
-        commentList.appendChild(commentElement);
+        function loadComments() {
+          fetch('http://localhost:3000/comments')
+          .then(response => response.json())
+          .then(data => {
+              data.forEach(commentData => {
+                  const commentDiv = commentSection(commentData);
+                  commentList.appendChild(commentDiv);
+              });
+          })
+          //catching error from the server
+          .catch(error => {
+              console.error('Error:', error);
+          });
+      }
 
-    
-        commentInput.value = "";
-    }
-});
+      commentSubmitButton.classList.add('btn', 'btn-primary');
+      commentSubmitButton.addEventListener('click', (e) => {      
+          e.preventDefault()
+          //I used trim() to remove whitespace characters from the beginning and end of a string 
+          const commentArea = commentInput.value.trim();
+          if (commentArea !== '') {
+              fetch('http://localhost:3000/comments', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ text: commentArea }),
+              })
+              .then(response => response.json())
+              .then(commentData => {
+                  const commentDiv = commentSection(commentData);
+                  commentList.appendChild(commentDiv);
+              })
+              //catching error from the server
+              .catch(error => {
+                  console.error(error);
+              });
+              commentInput.value = '';
+          }
+      });
+    });

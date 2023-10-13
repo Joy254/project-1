@@ -3,6 +3,7 @@
 <head>
     <title>Dog Breed List</title>
     <link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
     <header>
@@ -12,19 +13,25 @@
         <div class="search-container">
             <input type="text" id="breedSearch" class="search-input" placeholder="Search for a breed">
             <button id="searchButton" class="button">Search</button>
-        </div>
-        <button id="getBreedsButton" class="button">Get All Breeds</button>
+        </div><br><br>
+        <div id="btn">
+            <button id="getBreedsButton" class="button">Get All Breeds</button>
+            <button id="backButton" class="button hidden">Back</button>
+        </div><br><br>
         <div id="breedList" class="breed-list"></div>
-        <button id="backButton" class="button hidden">Back</button>
-        <div id="commentSection"> 
-            <div id="commentform">
-                <textarea id="textinput" placeholder="enter your comment"></textarea>
-                <button id="submitcomment">submit</button>
+       
+        <div id="comments" >
+            <h2>Comments</h2>
+            <div id="comment-form">
+                <textarea id="comment-input" placeholder="Enter your comment here..."></textarea>
+                <button id="comment-submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
             </div>
-            <div id="commentlist"></div>
-
-        </div>
-        
+            <!-- commet list container-->
+            <div id="comment-list">
+            </div>
+        </div>  
+    </div>
+    </div>
         
 
     </main>

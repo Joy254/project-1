@@ -59,4 +59,49 @@ footer {
     border-radius: 50px;
 
 }
+.comments {
+    margin-bottom: 11px;
+    margin-top: 20px;
+    flex-basis: 30%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
 
+.comment-form {
+    margin-bottom: 20px;
+}
+
+.comment-input {
+    width: 50%;
+    height: 80px;
+    resize:vertical;
+    margin-bottom: 10px;
+}
+
+.comment {
+    border: 10px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    position:relative;
+}
+.comment .actions {
+    display:flex;
+    justify-content:center;
+    margin-top: 10px;
+}
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+#btn {
+align-items:flex-start;
+display:flexbox;
+justify-content: space-between;
+
+}
